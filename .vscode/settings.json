@@ -1,0 +1,4 @@
+{
+  "jest.runMode": "on-demand",
+  "typescript.tsdk": "node_modules/typescript/lib"
+}
