@@ -4,6 +4,7 @@ import { validateEnvironment as validate } from './config';
 import { DbModule } from './db/db.module';
 import { UsersModule } from './users/users.module';
 import typeorm from './config/typeorm';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import typeorm from './config/typeorm';
     }),
     DbModule,
     UsersModule,
+    AuthModule,
   ],
 })
 export class AppModule {}

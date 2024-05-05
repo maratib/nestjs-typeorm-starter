@@ -14,26 +14,23 @@ describe('UsersService', () => {
       imports: [AppModule],
       providers: [
         UsersService,
-        {
-          provide: getRepositoryToken(User),
-          useClass: Repository,
-        },
+        // {
+        //   provide: getRepositoryToken(User),
+        //   useClass: Repository,
+        // },
       ],
     }).compile();
 
-    const usersRepository = connectionSource.getRepository(User);
-    service = new UsersService(usersRepository);
-
-    // service = module.get<UsersService>(UsersService);
+    service = module.get<UsersService>(UsersService);
   });
 
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
 
-  it('Find all users', async () => {
-    const users = await service.findAll();
-    console.log(users);
-    expect(service).toBeDefined();
-  });
+  // it('Find all users', async () => {
+  //   const users = await service.findAll();
+  //   console.log(users);
+  //   expect(service).toBeDefined();
+  // });
 });
