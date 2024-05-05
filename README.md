@@ -1,5 +1,7 @@
 # Nest.js TypeORM Starter
 
+#### Nest.js, TypeORM, JWT Auth, Postgres
+
 ```bash
 # To execute migration, use the following command:
 yarn migration:run

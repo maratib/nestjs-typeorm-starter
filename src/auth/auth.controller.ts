@@ -23,6 +23,12 @@ export class AuthController {
     return await this.authService.register(user);
   }
 
+  /**
+   * LocalAuthGuard called.
+   * Then it calls local.strategy.ts
+   * RequestWithUser comes from there
+   *
+   */
   @HttpCode(200)
   @UseGuards(LocalAuthGuard)
   @Post('login')
