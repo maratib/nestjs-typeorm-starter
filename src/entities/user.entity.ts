@@ -1,14 +1,16 @@
 import { Exclude } from 'class-transformer';
 import {
+  BeforeInsert,
   Column,
   Entity,
   Index,
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import * as bcrypt from 'bcrypt';
 // import { Post } from '../../posts/entities/post.entity';
 
-@Entity()
+@Entity({ name: 'users' })
 export class User {
   @PrimaryGeneratedColumn('uuid')
   public id: string;
@@ -32,6 +34,13 @@ export class User {
   @Exclude()
   @Column({ nullable: true })
   public refreshToken?: string;
+
+  @BeforeInsert()
+  async setPassword(password: string) {
+    // const salt = await bcrypt.genSalt()
+    // this.password = await bcrypt.hash(password || this.password, salt)
+    this.password = await bcrypt.hash(password || this.password, 10);
+  }
 
   // @OneToMany(() => Post, (post: Post) => post.author)
   // public posts: Post[];

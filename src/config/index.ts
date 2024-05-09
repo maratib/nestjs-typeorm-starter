@@ -1,5 +1,11 @@
+import { config as dotenvConfig } from 'dotenv';
 import { plainToClass } from 'class-transformer';
 import { IsNumber, IsString, validateSync } from 'class-validator';
+import { DataSource, DataSourceOptions } from 'typeorm';
+import { SeederOptions } from 'typeorm-extension';
+import { ConfigModule, registerAs } from '@nestjs/config';
+
+dotenvConfig({ path: '.env' });
 
 class EnvironmentVariables {
   @IsNumber()
@@ -46,3 +52,34 @@ export function validateEnvironment(config: Record<string, unknown>) {
   }
   return validatedConfig;
 }
+
+/******* TypeORM Setup */
+export const dbConfig: DataSourceOptions & SeederOptions = {
+  type: 'postgres',
+  host: `${process.env.DB_HOST}`,
+  port: Number(process.env.DB_PORT),
+  username: `${process.env.DB_USERNAME}`,
+  password: `${process.env.DB_PASSWORD}`,
+  database: `${process.env.DB_NAME}`,
+  // entities: ['dist/**/*.entity{.ts,.js}'],
+  entities: ['dist/**/*.entity{.ts,.js}'],
+  migrations: ['dist/migrations/*{.ts,.js}'],
+
+  seeds: ['dist/db/seeds/**/*.js'],
+  factories: ['dist/db/factories/**/*.js'],
+
+  // autoLoadEntities: true,
+  synchronize: false,
+};
+export const dbConfigWithAutoLoad = () => {
+  return { ...dbConfig, autoLoadEntities: true };
+};
+
+export const TypeOrmConfigModule = ConfigModule.forRoot({
+  // validateEnvironment,
+  cache: true,
+  isGlobal: true,
+  load: [registerAs('typeorm', dbConfigWithAutoLoad)],
+});
+
+export const connectionSource = new DataSource(dbConfig as DataSourceOptions);

@@ -4,7 +4,7 @@ import { RegisterDto } from './dto/register.dto';
 import * as bcrypt from 'bcrypt';
 import { TokenPayload } from './interfaces/token-payload.interface';
 import { UsersService } from '../users/users.service';
-import { User } from '../users/entities/user.entity';
+import { User } from '../entities/user.entity';
 import { ConfigService } from '@nestjs/config';
 
 @Injectable()
