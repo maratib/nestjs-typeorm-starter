@@ -1,5 +1,3 @@
-// import { Post } from '../../posts/entities/post.entity';
-
 import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'cats' })

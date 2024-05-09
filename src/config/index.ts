@@ -65,8 +65,8 @@ export const dbConfig: DataSourceOptions & SeederOptions = {
   entities: ['dist/**/*.entity{.ts,.js}'],
   migrations: ['dist/migrations/*{.ts,.js}'],
 
-  seeds: ['dist/db/seeds/**/*.js'],
-  factories: ['dist/db/factories/**/*.js'],
+  seeds: ['dist/db/seeds/**/*.seeder.js'],
+  // factories: ['dist/db/factories/**/*.js'],
 
   // autoLoadEntities: true,
   synchronize: false,
@@ -76,7 +76,7 @@ export const dbConfigWithAutoLoad = () => {
 };
 
 export const TypeOrmConfigModule = ConfigModule.forRoot({
-  // validateEnvironment,
+  validate: validateEnvironment,
   cache: true,
   isGlobal: true,
   load: [registerAs('typeorm', dbConfigWithAutoLoad)],
