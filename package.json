@@ -22,7 +22,8 @@
     "db:sync": "yarn typeorm schema:sync",
     "db:drop": "yarn typeorm schema:drop",
     "db:log": "yarn typeorm schema:log",
-    "db:seed": "npx typeorm-extension -d src/db/seed seed:run"
+    "db:seed": "npx typeorm-extension -d src/orm/seed seed:run",
+    "db": "yarn build && yarn db:drop && yarn db:sync && yarn db:seed"
   },
   "dependencies": {
     "@nestjs/common": "^10.3.8",

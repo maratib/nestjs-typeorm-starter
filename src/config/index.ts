@@ -4,6 +4,7 @@ import { IsNumber, IsString, validateSync } from 'class-validator';
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { SeederOptions } from 'typeorm-extension';
 import { ConfigModule, registerAs } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 dotenvConfig({ path: '.env' });
 
@@ -61,11 +62,11 @@ export const dbConfig: DataSourceOptions & SeederOptions = {
   username: `${process.env.DB_USERNAME}`,
   password: `${process.env.DB_PASSWORD}`,
   database: `${process.env.DB_NAME}`,
-  // entities: ['dist/**/*.entity{.ts,.js}'],
+
   entities: ['dist/**/*.entity{.ts,.js}'],
   migrations: ['dist/migrations/*{.ts,.js}'],
 
-  seeds: ['dist/db/seeds/**/*.seeder.js'],
+  seeds: ['dist/orm/seeds/**/*.seeder.js'],
   // factories: ['dist/db/factories/**/*.js'],
 
   // autoLoadEntities: true,
@@ -81,5 +82,8 @@ export const TypeOrmConfigModule = ConfigModule.forRoot({
   isGlobal: true,
   load: [registerAs('typeorm', dbConfigWithAutoLoad)],
 });
+
+export const TypeOrmTestingModule = (entities: any[]) =>
+  TypeOrmModule.forRoot({ ...dbConfig, entities: [...entities] });
 
 export const connectionSource = new DataSource(dbConfig as DataSourceOptions);

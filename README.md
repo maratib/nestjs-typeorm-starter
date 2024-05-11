@@ -40,8 +40,4 @@ yarn add -D @types/passport-jwt
 
 ### Issues :
 
-1. Fix Service Testings
-
-```
-
-```
+1. Fix Service Testings - [FIXED](https://dev.to/m4r14/nestjs-create-unit-test-for-service-with-ropository-typeorm-mysql-48ba)
