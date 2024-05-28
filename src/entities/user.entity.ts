@@ -44,6 +44,15 @@ export class User {
   updated: Date;
 
   @Column({ default: false })
+  locked: boolean;
+
+  @Column({ default: false })
+  expired: boolean;
+
+  @Column({ default: true })
+  enabled: boolean;
+
+  @Column({ default: false })
   del: boolean;
 
   @BeforeInsert()
