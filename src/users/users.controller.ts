@@ -10,11 +10,13 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { CreateUserDto } from '@/core/dto/create-user.dto';
+import { UpdateUserDto } from '@/core/dto/update-user.dto';
 import { PaginationParams } from '@/core/dto/pagination-params';
 import { MyInterceptor } from '@/core/interceptors/my.interceptor';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('User')
 @Controller('users')
 @UseInterceptors(MyInterceptor)
 export class UsersController {

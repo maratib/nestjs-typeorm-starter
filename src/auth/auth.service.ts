@@ -52,6 +52,7 @@ export class AuthService {
   }
 
   async findByCredentials(userName: string, password: string): Promise<User> {
+    console.log(`user : ${userName} password : ${password}`);
     const user: User = await this.usersService.findByUserName(userName);
     await this.verifyPassword(password, user.password);
 

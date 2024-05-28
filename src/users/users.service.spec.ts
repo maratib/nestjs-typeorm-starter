@@ -1,10 +1,9 @@
 import { AppModule } from './../app.module';
 import { Test, TestingModule } from '@nestjs/testing';
 import { UsersService } from './users.service';
-import { TypeOrmTestingModule } from '../config';
 import { User } from '../entities/user.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CreateUserDto } from './dto/create-user.dto';
+import { CreateUserDto } from '../core/dto/create-user.dto';
 
 describe('UsersService', () => {
   let service: UsersService;

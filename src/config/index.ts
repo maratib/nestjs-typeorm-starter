@@ -76,14 +76,18 @@ export const dbConfigWithAutoLoad = () => {
   return { ...dbConfig, autoLoadEntities: true };
 };
 
-export const TypeOrmConfigModule = ConfigModule.forRoot({
-  validate: validateEnvironment,
-  cache: true,
-  isGlobal: true,
-  load: [registerAs('typeorm', dbConfigWithAutoLoad)],
-});
+// export const TypeOrmConfigModule = ConfigModule.forRoot({
+//   validate: validateEnvironment,
+//   cache: true,
+//   isGlobal: true,
+//   load: [registerAs('typeorm', dbConfigWithAutoLoad)],
+// });
 
-export const TypeOrmTestingModule = (entities: any[]) =>
-  TypeOrmModule.forRoot({ ...dbConfig, entities: [...entities] });
+// export const TypeOrmTestingModule = (entities: any[]) =>
+//   TypeOrmModule.forRoot({ ...dbConfig, entities: [...entities] });
 
 export const connectionSource = new DataSource(dbConfig as DataSourceOptions);
+
+export const getLogLevels = (): any[] => {
+  return process.env.LOG_LEVELS!.split(',');
+};

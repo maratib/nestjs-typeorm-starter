@@ -2,10 +2,12 @@ import { Exclude } from 'class-transformer';
 import {
   BeforeInsert,
   Column,
+  CreateDateColumn,
   Entity,
   Index,
   OneToMany,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 // import { Post } from '../../posts/entities/post.entity';
@@ -34,6 +36,15 @@ export class User {
   @Exclude()
   @Column({ nullable: true })
   public refreshToken?: string;
+
+  @CreateDateColumn()
+  created: Date;
+
+  @UpdateDateColumn()
+  updated: Date;
+
+  @Column({ default: false })
+  del: boolean;
 
   @BeforeInsert()
   async setPassword(password: string) {
