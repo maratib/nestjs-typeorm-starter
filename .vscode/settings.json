@@ -1,5 +1,7 @@
 {
   "jest.runMode": "on-demand",
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "jest.jestCommandLine": "\"./node_modules/.bin/jest\" --runInBand --detectOpenHandles --forceExit"
+
   // "testing.openTesting": "neverOpen"
 }

@@ -4,9 +4,14 @@ import { UsersService } from './users.service';
 import { User } from '../entities/user.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CreateUserDto } from '../core/dto/create-user.dto';
+import { after } from 'node:test';
 
 describe('UsersService', () => {
   let service: UsersService;
+
+  beforeAll(async () => {
+    console.log('UserService testing starts.');
+  });
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -15,6 +20,11 @@ describe('UsersService', () => {
     }).compile();
 
     service = module.get<UsersService>(UsersService);
+  });
+
+  afterAll(async () => {
+    // process.exit(0);
+    console.log('UserService testing completed.');
   });
 
   it('should be defined', () => {
@@ -29,9 +39,9 @@ describe('UsersService', () => {
 
   it('Create a User', async () => {
     const userDto: CreateUserDto = {
-      userName: 'waleed',
-      email: 'ma1ratib3@gmail.com',
-      phoneNumber: '03229249400',
+      userName: 'waleed12',
+      email: 'ma1ratib32@gmail.com',
+      phoneNumber: '03229249402',
       password: 'passw0rd',
       refreshToken: '',
     };
